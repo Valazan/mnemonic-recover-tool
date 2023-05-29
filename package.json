@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "bip39": "^3.0.4",
+    "bitcore-lib": "^10.0.5",
+    "bitcore-mnemonic": "^10.0.5",
     "ethereum-hdwallet": "0.0.26",
     "web3": "^1.6.1"
   },
