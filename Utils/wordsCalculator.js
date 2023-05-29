@@ -6,72 +6,39 @@ async function calculatePossibleWords(mnemonic) {
   let valid = [];
 
   try {
-    let content = await fs.promises.readFile("wordlist.txt", "utf8");
+    let content = await fs.promises.readFile("Utils/wordlist.txt", "utf8");
     let wordlist = content.split("\n");
 
-    for (let i = 0; i < missingWords; i++) {
-      console.log("calculating %i missing word...", missingWords);
-      wordlist.forEach((word) => {});
+    if (missingWords > 2) {
+      throw new Error("More than two missing words is not allowed");
     }
+    let mnemonicToValidate = [];
 
-    switch (missingWords) {
-      case 1:
-        console.log("calculating 1 missing word...");
-        wordlist.forEach((word) => {
-          var seedToCheck = mnemonic.concat(" ").concat(word);
-          if (bip39.validateMnemonic(seedToCheck)) {
-            valid.push(seedToCheck);
-          }
-        });
-        break;
-      case 2:
-        console.log("calculating 2 missing words...");
-        wordlist.forEach((word) => {
-          wordlist.forEach((word2) => {
-            var seedToCheck = mnemonic
-              .concat(" ")
-              .concat(word)
-              .concat(" ")
-              .concat(word2);
-            if (bip39.validateMnemonic(seedToCheck)) {
-              valid.push(seedToCheck);
-            }
-          });
-        });
-        break;
-      case 3:
-        console.log("calculating 3 missing words...");
-        wordlist.forEach((word) => {
-          wordlist.forEach((word2) => {
-            wordlist.forEach((word3) => {
-              var seedToCheck = mnemonic
-                .concat(" ")
-                .concat(word)
-                .concat(" ")
-                .concat(word2)
-                .concat(" ")
-                .concat(word3);
-              if (bip39.validateMnemonic(seedToCheck)) {
-                if (valid.length === 400000) {
-                  writeFile(valid);
-                  valid = [];
-                }
-                valid.push(seedToCheck);
-              }
-            });
-          });
-        });
-        break;
-      default:
-        console.log("more than 3 missing words is not allowed");
-        return [];
+    if (missingWords == 1) {
+      mnemonicToValidate = wordlist.map((word) =>
+        mnemonic.concat(" ").concat(word)
+      );
+    } else {
+      mnemonicToValidate = computeCombinationPair(wordlist, mnemonic);
     }
-
+    valid = validateMnemonic(mnemonicToValidate);
     return valid;
   } catch (err) {
     console.error(err);
     return [];
   }
+}
+
+function computeCombinationPair(array, mnemonic) {
+  return array.flatMap((v, i) =>
+    array.slice(i + 1).map((w) => mnemonic + " " + v + " " + w)
+  );
+}
+
+function validateMnemonic(mnemonicToValidate) {
+  return mnemonicToValidate.filter((computedMnemonic) =>
+    bip39.validateMnemonic(computedMnemonic)
+  );
 }
 
 function writeFile(valid) {
@@ -92,8 +59,9 @@ function writeFile(valid) {
   console.log("file written successfully", fileName);
 }
 
-function calculateAndWritePossibleWords(mnemonic) {
-  calculatePossibleWords(mnemonic).then((result) => writeFile(result));
+async function calculateAndWritePossibleWords(mnemonic) {
+  const result = await calculatePossibleWords(mnemonic);
+  return writeFile(result);
 }
 
 module.exports = { calculateAndWritePossibleWords };
