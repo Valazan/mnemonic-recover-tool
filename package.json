@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx jest"
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +12,8 @@
     "bip39": "^3.0.4",
     "ethereum-hdwallet": "0.0.26",
     "web3": "^1.6.1"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
   }
 }
