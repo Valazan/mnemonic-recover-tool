@@ -11,7 +11,7 @@ describe("wordsCalcultator", () => {
   it("should write the list of valid keywords", async () => {
     const incompleteMnemonic = mnemonic
       .split(" ")
-      .splice(0, 10)
+      .splice(0, 11)
       .reduce((accumulator, currentValue) => accumulator + " " + currentValue);
     await wordsCalcultator.calculateAndWritePossibleWords(incompleteMnemonic);
   });
