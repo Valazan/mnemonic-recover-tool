@@ -13,6 +13,9 @@ describe("wordsCalcultator", () => {
       .split(" ")
       .splice(0, 11)
       .reduce((accumulator, currentValue) => accumulator + " " + currentValue);
-    await wordsCalcultator.calculateAndWritePossibleWords(incompleteMnemonic);
+    await wordsCalcultator.calculateAndWritePossibleWords(
+      incompleteMnemonic,
+      "output"
+    );
   });
 });

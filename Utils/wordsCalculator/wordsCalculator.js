@@ -50,6 +50,10 @@ function writeFile(valid, relativePath) {
     str += v + "\n";
   });
 
+  if (!fs.existsSync(relativePath)) {
+    fs.mkdirSync(relativePath);
+  }
+
   let fileName = relativePath + "/" + "valid" + new Date().getTime() + ".txt";
   fs.writeFileSync(fileName, str, function (err) {
     if (err) {
@@ -62,9 +66,9 @@ function writeFile(valid, relativePath) {
   console.log("file written successfully", fileName);
 }
 
-async function calculateAndWritePossibleWords(mnemonic) {
+async function calculateAndWritePossibleWords(mnemonic, relativePath) {
   const result = await calculatePossibleWords(mnemonic);
-  return writeFile(result, "output");
+  return writeFile(result, relativePath);
 }
 
 module.exports = { calculateAndWritePossibleWords };
