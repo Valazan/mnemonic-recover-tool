@@ -44,13 +44,13 @@ function validateMnemonic(mnemonicToValidate) {
   );
 }
 
-function writeFile(valid) {
+function writeFile(valid, relativePath) {
   let str = "";
   valid.forEach((v) => {
     str += v + "\n";
   });
 
-  let fileName = "valid" + new Date().getTime() + ".txt";
+  let fileName = relativePath + "/" + "valid" + new Date().getTime() + ".txt";
   fs.writeFileSync(fileName, str, function (err) {
     if (err) {
       return console.log(err);
@@ -64,7 +64,7 @@ function writeFile(valid) {
 
 async function calculateAndWritePossibleWords(mnemonic) {
   const result = await calculatePossibleWords(mnemonic);
-  return writeFile(result);
+  return writeFile(result, "output");
 }
 
 module.exports = { calculateAndWritePossibleWords };
