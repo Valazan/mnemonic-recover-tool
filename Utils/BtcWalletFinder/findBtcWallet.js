@@ -1,7 +1,7 @@
 var bip39 = require("bip39");
 var Mnemonic = require("bitcore-mnemonic");
 var bitcore = require("bitcore-lib");
-const { permute } = require("./Utils/permutation/permutationUtil");
+const { permute } = require("../permutation/permutationUtil");
 
 let permutations = permute("".split(" "));
 

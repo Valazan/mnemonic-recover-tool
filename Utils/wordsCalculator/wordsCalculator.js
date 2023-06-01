@@ -6,8 +6,11 @@ async function calculatePossibleWords(mnemonic) {
   let valid = [];
 
   try {
-    let content = await fs.promises.readFile("Utils/wordlist.txt", "utf8");
-    let wordlist = content.split("\n");
+    let content = await fs.promises.readFile(
+      "Utils/wordsCalculator/wordlist.txt",
+      "utf8"
+    );
+    let wordlist = content.split("\r\n");
 
     if (missingWords > 2) {
       throw new Error("More than two missing words is not allowed");
