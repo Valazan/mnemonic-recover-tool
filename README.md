@@ -1,4 +1,4 @@
-# Mnemonic Recovery Tool
+# Mnemonic Recovery Tool *Under Development
 
 The Mnemonic Recovery Tool is a software utility designed to assist users in recovering their cryptocurrency wallets using an incomplete mnemonic phrase. This tool enables users to calculate 1 or 2 missing mnemonic word in case of loss or damage.
 
@@ -20,7 +20,7 @@ The Mnemonic Recovery Tool is a software utility designed to assist users in rec
 
 ## Usage
 
-The tool is still on development phase, however it's already capable to recover missing seed words.
+The tool is still under development, however it's already capable to recover missing seed words.
 
 ## License
 
