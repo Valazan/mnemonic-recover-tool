@@ -20,7 +20,7 @@ The Mnemonic Recovery Tool is a software utility designed to assist users in rec
 
 ## Usage
 
-The tool is still on development phase.
+The tool is still on development phase, however it's already capable to recover missing seed words.
 
 ## License
 
