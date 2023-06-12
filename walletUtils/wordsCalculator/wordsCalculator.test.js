@@ -1,7 +1,5 @@
-// myClass.test.js
 const wordsCalcultator = require("./wordsCalculator");
 const bip39 = require("bip39");
-const exp = require("constants");
 const fs = require("fs");
 
 describe("wordsCalcultator", () => {

@@ -1,6 +1,6 @@
 var bitcore = require("bitcore-lib");
 
-// Calculate a BTC wallet address from a mnemonic
+// Calculate a BTC wallet address from a mnemonic using bitcore
 
 function mnemonicToAddress(mnemonic) {
   const xpriv = mnemonic.toHDPrivateKey(bitcore.Networks.livenet);

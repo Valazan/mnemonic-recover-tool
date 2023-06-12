@@ -7,7 +7,7 @@ async function calculatePossibleWords(mnemonic) {
 
   try {
     let content = await fs.promises.readFile(
-      "Utils/wordsCalculator/wordlist.txt",
+      "walletUtils/wordsCalculator/wordlist.txt",
       "utf8"
     );
     const { EOL } = require("os");
