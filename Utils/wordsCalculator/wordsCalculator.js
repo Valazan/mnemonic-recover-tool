@@ -10,7 +10,8 @@ async function calculatePossibleWords(mnemonic) {
       "Utils/wordsCalculator/wordlist.txt",
       "utf8"
     );
-    let wordlist = content.split("\r\n");
+    const { EOL } = require("os");
+    let wordlist = content.split(EOL);
 
     if (missingWords > 2) {
       throw new Error("More than two missing words is not allowed");
