@@ -65,6 +65,7 @@ function writeFile(valid, relativePath) {
   str = "";
 
   console.log("file written successfully", fileName);
+  return fileName;
 }
 
 async function calculateAndWritePossibleWords(mnemonic, relativePath) {
