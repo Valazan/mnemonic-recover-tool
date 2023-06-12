@@ -2,7 +2,7 @@
 
 const bip39 = require("bip39");
 const Mnemonic = require("bitcore-mnemonic");
-const { mnemonicToAddress } = require("./BTCWalletUtil");
+const { mnemonicToAddress } = require("./btcWalletUtil");
 
 describe("BTC utilities", () => {
   it("should calculate a BTC wallet address from a mnemonic", () => {
